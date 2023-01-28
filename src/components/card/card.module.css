@@ -1,0 +1,37 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  /* width: 22vw; */
+  max-height: 400px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.root .thmbnail {
+  border-radius: 15px;
+  height: 180px;
+  width: 300px;
+  background-size: contain;
+}
+.acc {
+  border-radius: 50%;
+  width: 35px;
+  margin-right: 10px;
+}
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-bottom: 7px;
+}
+.description {
+  display: flex;
+  padding: 10px;
+}
+.name {
+  font-size: 12px;
+  color: #0f0f0f;
+  color: #757575;
+  line-height: 18px;
+}

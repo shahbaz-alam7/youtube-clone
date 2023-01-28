@@ -1,0 +1,39 @@
+.root {
+  overflow: scroll;
+  scroll-behavior: smooth;
+  height: 100vh;
+  width: 100%;
+  /* margin-left: 100px; */
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  overflow: scroll;
+  /* place-items: center; */
+  gap: 20px;
+  padding: 20px;
+}
+@media screen and (max-width: 1200px) {
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 11px;
+    padding: 10px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}

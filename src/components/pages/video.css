@@ -1,0 +1,12 @@
+.video-page {
+  display: flex;
+}
+.you-tube {
+  width: 60vw;
+  height: 500px;
+}
+.other-vdo {
+  width: 300px;
+  border: 2px solid red;
+  flex: 1;
+}

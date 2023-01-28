@@ -1,0 +1,98 @@
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  height: 70px;
+  justify-items: center;
+  align-content: space-between;
+  position: sticky;
+  top: 0px;
+}
+
+.header-menu {
+  color: #c71818;
+}
+.logo {
+  height: 70px;
+}
+.menu,
+.icons {
+  /* color: #f3eaea; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: start;
+  font-size: 24px;
+  height: 30px;
+  margin: 5px;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  /* // width: 75px; */
+}
+.menu-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  padding-left: 20px;
+}
+.account {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  overflow: hidden;
+
+  padding-right: 15px;
+  margin: 0px;
+}
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  height: 100%;
+  border: 1px solid #ece7e7;
+  border-radius: 20px;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3), 3px 3px 2px rgba(0, 0, 0, 0.3);
+  background-color: #424141;
+}
+.search-input {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  outline: initial;
+  border: none;
+  outline: none;
+  height: 38px;
+  padding-left: 15px;
+  background-color: #1b1919;
+  color: #fff;
+  margin-right: 5px;
+  width: 100%;
+  min-width: 50vw;
+}
+.icon-bg {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  background-color: #424141;
+  border-radius: 50%;
+  margin-left: 10px;
+  width: 40px;
+}
+.icon-bg:hover {
+  background-color: #f2f2f2;
+  color: #0f0f0f;
+}
+
+@media screen and (max-width: 550px) {
+  .search-container {
+    display: none;
+  }
+}
