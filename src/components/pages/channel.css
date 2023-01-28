@@ -21,6 +21,7 @@
 .content {
   width: 80%;
   margin: auto;
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,11 +39,16 @@
   font-size: 14px;
   color: #606060;
 }
-.channel-info img {
-  width: 50px;
-  height: 50px;
-  border: 1px solid black;
+
+.channel-info .channel-logo {
+  width: 52px;
+  height: 52px;
+  background-color: rgb(181, 178, 178);
   border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 5px 10px;
 }
 .subscribe_btn {

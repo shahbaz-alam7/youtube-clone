@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { videoDetail, getChannelVideos } from "../../redux/actions/dataAction";
 import { Card } from "../card/card";
@@ -11,17 +11,17 @@ const VideoPage = () => {
   const details = useSelector((state) => state.data.videoDetail);
   const channelVideos = useSelector((state) => state.data.channelVideos);
   const loading = useSelector((state) => state.data.loading);
-  console.log("VideoPage ~ loading", loading)
-
-  console.log("VideoPage ~ channelVideos", channelVideos);
 
   useEffect(() => {
     dispatch(videoDetail(id));
     dispatch(getChannelVideos(channelId));
-  }, []);
-  console.log("VideoPage ~ detail-=s", details);
+  }, [id, channelId]);
   const { snippet, statistics } = details;
-//   if (loading) return <Spinner />;
+  console.log("VideoPage ~ statistics", statistics);
+
+  console.log("VideoPage ~ snippet", snippet);
+
+  if (loading) return <Spinner />;
   return (
     <div className="video-page">
       <div className="vdo-part">
@@ -29,12 +29,29 @@ const VideoPage = () => {
           className="you-tube"
           src={`https://www.youtube.com/embed/${id}?autoplay=1&controls=1`}
         ></iframe>
-        <h1>Video</h1>
+        <h1>{snippet?.title}</h1>
+        <div className="channel-details">
+          <div className="channel-logo">
+            <p>{snippet?.channelTitle.charAt(0)}</p>
+          </div>
+          <div className="name">
+            <h1>{snippet?.channelTitle}</h1>
+          </div>
+          <div className="subscribe">
+            <p>Subscibe</p>
+          </div>
+        </div>
+        <div className="vdo-details">
+          <p>{snippet?.description}</p>
+        </div>
+        <div className="comment-section">
+          <h1>Comment section Coming soon...</h1>
+        </div>
       </div>
-      <div className="other-vdo">
+      <div className="other-vdos">
         <h1>Other Video</h1>
-        {channelVideos.map((item) => {
-          return <Card key={item.id.videoId} item={item} />;
+        {channelVideos.map((item, i) => {
+          return <Video key={i} item={item} />;
         })}
       </div>
     </div>
@@ -42,3 +59,25 @@ const VideoPage = () => {
 };
 
 export default VideoPage;
+
+const Video = ({ item }) => {
+  const navigate = useNavigate();
+  const vdoId = item.id.videoId;
+  const channelId = item.snippet.channelId;
+  const handleNavigate = () => {
+    navigate(`/video/${vdoId}/${channelId}`);
+  };
+  return (
+    <>
+      <div className="video-box" onClick={handleNavigate}>
+        <div className="thumbnail">
+          <img src={item.snippet.thumbnails.medium.url} alt="" />
+        </div>
+        <div className="detail-box">
+          <p className="title">{item.snippet.title.slice(0, 50)}</p>
+          <p className="name">{item.snippet.channelTitle}</p>
+        </div>
+      </div>
+    </>
+  );
+};

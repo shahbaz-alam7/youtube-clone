@@ -1,5 +1,4 @@
 import styles from "./card.module.css";
-import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 
 export const Card = ({ item }) => {

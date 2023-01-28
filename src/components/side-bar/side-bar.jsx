@@ -1,76 +1,58 @@
 import {
   AiFillHome,
-  AiOutlineLike,
-  AiOutlineSetting,
   BiHistory,
   MdOutlineSubscriptions,
-  MdOutlineWatchLater,
-  MdOutlinedFlag,
-  MdOutlineHelpOutline,
-  MdOutlineFeedback,
-  RiVideoLine,
-  MdOutlineVideoLibrary,
   BsCodeSlash,
   BsMusicNoteBeamed,
   FaReact,
+  CgGirl,
   DiJavascript1,
   IoGameControllerOutline,
+  BiTrophy,
+  MdOutlineLiveTv,
+  GiFilmStrip,
+  MdPodcasts,
+  GiPoloShirt,
+  SiNextdotjs,
+  AiOutlineSetting,
+  AiOutlineBulb,
+  AiOutlineFire,
 } from "../../assets/icons";
 import { getVideos } from "../../redux/actions/dataAction";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styles from "./side-bar.module.css";
 import { useState, useEffect } from "react";
 export const SideBar = ({ active, setActive }) => {
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
   const navItems = [
-    {
-      name: "Home",
-      icon: <AiFillHome />,
-    },
+    { name: "Home", icon: <AiFillHome />, link: "main" },
     {
       name: "Subscription",
       icon: <MdOutlineSubscriptions />,
+      link: "subscription",
     },
-    {
-      name: "Library",
-      icon: <RiVideoLine />,
-    },
-    {
-      name: "History",
-      icon: <BiHistory />,
-    },
-    { line: true },
-    { name: "Reactjs", icon: <FaReact />, cat: "reactjs" },
-    { name: "Javascript", icon: <DiJavascript1 />, cat: "Javascript" },
-    { name: "music", icon: <BsMusicNoteBeamed />, cat: "music" },
-    { name: "web development", icon: <BsCodeSlash />, cat: "web development" },
-    { name: "gaming", icon: <IoGameControllerOutline />, cat: "gaming" },
-    { line: true },
-
-    { name: "Your videos", icon: <MdOutlineVideoLibrary /> },
-    {
-      name: "Watch Later",
-      icon: <MdOutlineWatchLater />,
-    },
-    {
-      name: "Liked videos",
-      icon: <AiOutlineLike />,
-    },
-    { line: true },
-    { name: "Settings", icon: <AiOutlineSetting /> },
-    {
-      name: "Report history",
-      icon: <MdOutlinedFlag />,
-    },
-    {
-      name: "Help",
-      icon: <MdOutlineHelpOutline />,
-    },
-    {
-      name: "Send feedback",
-      icon: <MdOutlineFeedback />,
-    },
+    { name: "History", icon: <BiHistory />, link: "history" },
+    { name: "Account", icon: <AiOutlineSetting />, link: "account" },
+  ];
+  const searchItems = [
+    { name: "Trending", icon: <AiOutlineFire /> },
+    { name: "New", icon: <AiFillHome /> },
+    { name: "Coding", icon: <BsCodeSlash /> },
+    { name: "Reactjs", icon: <FaReact /> },
+    { name: "Javascript", icon: <DiJavascript1 /> },
+    { name: "Next js", icon: <SiNextdotjs /> },
+    { name: "Web development", icon: <BsCodeSlash /> },
+    { name: "Music", icon: <BsMusicNoteBeamed /> },
+    { name: "Movies", icon: <GiFilmStrip /> },
+    { name: "Gaming", icon: <IoGameControllerOutline /> },
+    { name: "Education", icon: <AiOutlineBulb /> },
+    { name: "Podcast", icon: <MdPodcasts /> },
+    { name: "Live", icon: <MdOutlineLiveTv /> },
+    { name: "Sport", icon: <BiTrophy /> },
+    { name: "Fashion", icon: <GiPoloShirt /> },
+    { name: "Beauty", icon: <CgGirl /> },
   ];
 
   useEffect(() => {
@@ -81,13 +63,13 @@ export const SideBar = ({ active, setActive }) => {
       {active ? (
         <div className={styles.navbar}>
           <div className={styles.slideNav}>
-            {navItems.map(({ name, icon, cat, line }) => {
-              if (line) return <div className={styles.line} />;
+            {searchItems.map(({ name, icon }) => {
               return (
                 <button
+                  key={name}
                   className={styles.items}
                   onClick={() => {
-                    setCategory(cat);
+                    setCategory(name);
                     setActive(false);
                   }}
                 >
@@ -97,17 +79,19 @@ export const SideBar = ({ active, setActive }) => {
               );
             })}
 
-            <div className={styles.line} />
+            {/* <div className={styles.line} /> */}
           </div>
         </div>
       ) : (
         <div className={styles.container}>
-          {navItems.slice(0, 4).map(({ name, icon }, i) => {
+          {navItems.map(({ name, icon, link }, i) => {
             return (
-              <button key={i} className={styles.items}>
-                {icon}
-                <span>{name}</span>
-              </button>
+              <Link to={`/${link}`} key={i}>
+                <button className={styles.items}>
+                  {icon}
+                  <span>{name}</span>
+                </button>
+              </Link>
             );
           })}
         </div>

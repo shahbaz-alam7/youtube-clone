@@ -13,7 +13,6 @@ const Channel = () => {
 
   const data = useSelector((state) => state.data.channel);
   const videos = useSelector((state) => state.data.channelVideos);
-  console.log("Channel ~ videos", videos);
 
   const dispatch = useDispatch();
   const { brandingSettings, statistics, snippet } = data;
@@ -21,7 +20,6 @@ const Channel = () => {
     dispatch(getChannelDetail(id));
     dispatch(getChannelVideos(id));
   }, []);
-  // console.log;
   if (!data) return "Loading...";
   return (
     <div className="channel">
@@ -33,7 +31,9 @@ const Channel = () => {
       </div>
       <div className="content">
         <div className="channel-info">
-          <img src="" alt="" />
+          <div className="channel-logo">
+            <p>M</p>
+          </div>
           <div className="info">
             <p className="title">{brandingSettings?.channel.title}</p>
             <p className="channel-id">{snippet?.customUrl}</p>
