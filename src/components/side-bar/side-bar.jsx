@@ -1,28 +1,28 @@
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   AiFillHome,
-  BiHistory,
-  MdOutlineSubscriptions,
-  BsCodeSlash,
-  BsMusicNoteBeamed,
-  FaReact,
-  CgGirl,
-  DiJavascript1,
-  IoGameControllerOutline,
-  BiTrophy,
-  MdOutlineLiveTv,
-  GiFilmStrip,
-  MdPodcasts,
-  GiPoloShirt,
-  SiNextdotjs,
-  AiOutlineSetting,
   AiOutlineBulb,
   AiOutlineFire,
+  AiOutlineSetting,
+  BiHistory,
+  BiTrophy,
+  BsCodeSlash,
+  BsMusicNoteBeamed,
+  CgGirl,
+  DiJavascript1,
+  FaReact,
+  GiFilmStrip,
+  GiPoloShirt,
+  IoGameControllerOutline,
+  MdOutlineLiveTv,
+  MdOutlineSubscriptions,
+  MdPodcasts,
+  SiNextdotjs,
 } from "../../assets/icons";
 import { getVideos } from "../../redux/actions/dataAction";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import styles from "./side-bar.module.css";
-import { useState, useEffect } from "react";
 export const SideBar = ({ active, setActive }) => {
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();

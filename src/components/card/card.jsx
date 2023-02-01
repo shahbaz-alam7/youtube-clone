@@ -1,12 +1,14 @@
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { ADD_TO_HISTORY } from "../../redux/constant";
 import styles from "./card.module.css";
-import { useNavigate, Link } from "react-router-dom";
-
 export const Card = ({ item }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     channelId,
     channelTitle,
-    // description,
+    description,
     publishedAt,
     title,
     thumbnails,
@@ -14,10 +16,30 @@ export const Card = ({ item }) => {
   const channelDetails = (id) => {
     navigate(`/channel/${id}`);
   };
+  const addToHistory = () => {
+    dispatch({
+      type: ADD_TO_HISTORY,
+      payload: {
+        id: item.id.videoId,
+        channelId,
+        description,
+        channelTitle,
+        publishedAt,
+        lastViewedAt: new Date().toLocaleTimeString(),
+        title,
+        thumbnails,
+      },
+    });
+  };
   return (
     <div className={styles.root}>
       <Link to={`/video/${item.id.videoId}/${channelId}`}>
-        <img src={thumbnails.high.url} className={styles.thmbnail} alt="" />
+        <img
+          src={thumbnails.high.url}
+          className={styles.thmbnail}
+          alt=""
+          onClick={addToHistory}
+        />
       </Link>
       <div className={styles.description}>
         <div>

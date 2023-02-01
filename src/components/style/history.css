@@ -1,0 +1,34 @@
+.history-div {
+  /* padding: 15px; */
+  /* background-color: rgb(147, 145, 145); */
+}
+.hisory-card {
+  margin: 10px;
+  display: flex;
+}
+.hisory-card img {
+  width: 250px;
+  height: 175px;
+  border-radius: 15px;
+  margin-right: 15px;
+}
+.hisory-card .details{
+    color: rgb(102, 102, 102);
+    padding-top: 15px;
+}
+.hisory-card .title {
+  font-size: 24px;
+  color: #000;
+}
+.channelTitle {
+  display: flex;
+  align-items: center;
+  /* justify-content:center; */
+}
+.channelTitle .icon {
+  background-color: rgb(70, 70, 70);
+  color: #fff;
+  border-radius: 50%;
+  margin: 5px 10px;
+  font-size: 14px;
+}

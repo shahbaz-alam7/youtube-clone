@@ -1,12 +1,13 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/layout/Layout";
 import Main from "./components/main/Main";
-import Channel from "./components/pages/Channel";
-import VideoPage from "./components/pages/VideoPage";
-import Subscription from "./components/pages/Subscription";
 import Account from "./components/pages/Account";
+import Channel from "./components/pages/Channel";
+import Subscription from "./components/pages/Subscription";
+
 import History from "./components/pages/History";
+import VideoPage from "./components/pages/VideoPage";
 function App() {
   return (
     <div className="App">

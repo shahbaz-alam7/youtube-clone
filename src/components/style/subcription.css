@@ -1,0 +1,10 @@
+.subscribtion-box {
+  background-color: rgb(203, 197, 197);
+  padding: 10px;
+  border: 1px solid black;
+  margin: 5px;
+  border-radius: 10px;
+}
+.subscribtion-box a {
+  text-decoration: none;
+}

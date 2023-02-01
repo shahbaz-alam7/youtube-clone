@@ -1,9 +1,11 @@
 import {
-  VIDEOS,
-  CHANNEL_VIDEOS,
+  ADD_TO_HISTORY,
   CHANNEL,
-  VIDEO_DETAIL,
+  CHANNEL_VIDEOS,
   LOADING,
+  SUBSCRIBE,
+  VIDEOS,
+  VIDEO_DETAIL,
 } from "../constant";
 let initialState = {
   category: [],
@@ -11,9 +13,10 @@ let initialState = {
   channel: {},
   channelVideos: [],
   videoDetail: [],
+  subscribedChannel: [],
   loading: false,
+  history: [],
 };
-
 const handleData = (state = initialState, action) => {
   switch (action.type) {
     case VIDEOS:
@@ -26,6 +29,21 @@ const handleData = (state = initialState, action) => {
       return { ...state, videoDetail: { ...action.payload } };
     case LOADING:
       return { ...state, loading: action.payload };
+    case ADD_TO_HISTORY:
+      console.log(action.payload);
+      return {
+        ...state,
+        history: [...state.history, action.payload],
+      };
+    case SUBSCRIBE:
+      const filterChannel = [...state.subscribedChannel];
+      const check = filterChannel.includes(action.payload);
+      if (!check) {
+        return {
+          ...state,
+          subscribedChannel: [...state.subscribedChannel, action.payload],
+        };
+      }
     default:
       return { ...state };
   }

@@ -1,18 +1,21 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { BsBell } from "../../assets/icons";
-import "./channel.css";
-import {
-  getChannelVideos,
-  getChannelDetail,
-} from "../../redux/actions/dataAction";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { BsBell } from "../../assets/icons";
+import {
+  getChannelDetail,
+  getChannelVideos,
+} from "../../redux/actions/dataAction";
+import { SUBSCRIBE } from "../../redux/constant";
 import { Card } from "../card/card";
+import "./channel.css";
 const Channel = () => {
   const { id } = useParams();
+  console.log("Channel ~ id", id);
 
   const data = useSelector((state) => state.data.channel);
   const videos = useSelector((state) => state.data.channelVideos);
+  const subscribe = useSelector((state) => state.data.subscribedChannel);
 
   const dispatch = useDispatch();
   const { brandingSettings, statistics, snippet } = data;
@@ -20,6 +23,12 @@ const Channel = () => {
     dispatch(getChannelDetail(id));
     dispatch(getChannelVideos(id));
   }, []);
+  const handleSubscribebtn = () => {
+    dispatch({
+      type: SUBSCRIBE,
+      payload: id,
+    });
+  };
   if (!data) return "Loading...";
   return (
     <div className="channel">
@@ -40,8 +49,8 @@ const Channel = () => {
             <p className="subs">{statistics?.subscriberCount}</p>
           </div>
         </div>
-        <button className="subscribe_btn">
-          <BsBell /> <sapn>Subcribe</sapn>
+        <button className="subscribe_btn" onClick={handleSubscribebtn}>
+          <BsBell /> <span>Subscribe</span>
         </button>
       </div>
       <div className="videos-container">

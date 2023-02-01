@@ -15,6 +15,7 @@ export {
 export { GrCode } from "react-icons/gr";
 export { BiHistory, BiVideoPlus, BiMicrophone, BiTrophy } from "react-icons/bi";
 export { RiVideoLine } from "react-icons/ri";
+export {TiTick} from "react-icons/ti"
 export { FaReact } from "react-icons/fa";
 export { CgGirl } from "react-icons/cg";
 export { SiNextdotjs } from "react-icons/si";

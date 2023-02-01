@@ -38,3 +38,7 @@ export const videoDetail = (id) => async (dispatch) => {
   dispatch({ type: VIDEO_DETAIL, payload: data[0] });
   dispatch({ type: LOADING, payload: false });
 };
+
+// export const subscribeChannel=(id)=(dispatch)=>{
+// dispatch({})
+// }

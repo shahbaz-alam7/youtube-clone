@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { videoDetail, getChannelVideos } from "../../redux/actions/dataAction";
-import { Card } from "../card/card";
+import { useNavigate, useParams } from "react-router-dom";
+import { getChannelVideos, videoDetail } from "../../redux/actions/dataAction";
+import { ADD_TO_HISTORY, SUBSCRIBE } from "../../redux/constant";
 import Spinner from "./Spinner";
 import "./video.css";
 const VideoPage = () => {
@@ -11,15 +11,14 @@ const VideoPage = () => {
   const details = useSelector((state) => state.data.videoDetail);
   const channelVideos = useSelector((state) => state.data.channelVideos);
   const loading = useSelector((state) => state.data.loading);
-
+  const handleSubscribebtn = () => {
+    dispatch({ type: SUBSCRIBE, payload: channelId });
+  };
   useEffect(() => {
     dispatch(videoDetail(id));
     dispatch(getChannelVideos(channelId));
   }, [id, channelId]);
   const { snippet, statistics } = details;
-  console.log("VideoPage ~ statistics", statistics);
-
-  console.log("VideoPage ~ snippet", snippet);
 
   if (loading) return <Spinner />;
   return (
@@ -37,7 +36,7 @@ const VideoPage = () => {
           <div className="name">
             <h1>{snippet?.channelTitle}</h1>
           </div>
-          <div className="subscribe">
+          <div className="subscribe" onClick={handleSubscribebtn}>
             <p>Subscibe</p>
           </div>
         </div>
@@ -62,10 +61,27 @@ export default VideoPage;
 
 const Video = ({ item }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const vdoId = item.id.videoId;
+
   const channelId = item.snippet.channelId;
   const handleNavigate = () => {
+    addToHistory();
     navigate(`/video/${vdoId}/${channelId}`);
+  };
+  const addToHistory = () => {
+    dispatch({
+      type: ADD_TO_HISTORY,
+      payload: {
+        id: vdoId,
+        channelId,
+        channelTitle: item?.snippet.channelTitle,
+        publishedAt: item?.snippet.publishedAt,
+        lastViewedAt: new Date().toLocaleTimeString(),
+        title: item?.snippet.title,
+        thumbnails: item?.snippet?.thumbnails,
+      },
+    });
   };
   return (
     <>
